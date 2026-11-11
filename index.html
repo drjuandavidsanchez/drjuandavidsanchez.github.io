@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consultorio · Dr. Juan David Sánchez Males</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Marcellus&display=swap" rel="stylesheet" />
+  <link rel="icon" href="monograma.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+</head>
+<body>
+  <!-- Login -->
+  <section id="vista-login" class="login hidden">
+    <div class="login-card">
+      <div class="marca">
+        <picture class="logo"><source srcset="monograma-claro.png" media="(prefers-color-scheme: dark)"><img src="monograma.png" alt="JD"></picture>
+        <div>
+          <h1 id="login-nombre">Consultorio</h1>
+          <p id="login-esp" class="muted"></p>
+        </div>
+      </div>
+      <form id="form-login">
+        <label>Correo<input type="email" name="email" required autocomplete="email" /></label>
+        <label>Contraseña<input type="password" name="password" required minlength="6" autocomplete="current-password" /></label>
+        <label id="campo-nombre" class="hidden">Tu nombre<input type="text" name="nombre" /></label>
+        <button class="btn primario full" type="submit" id="btn-login">Entrar</button>
+        <p class="muted center">
+          <a href="#" id="toggle-registro">¿No tienes cuenta? Regístrate</a>
+        </p>
+        <p id="login-msg" class="msg"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Pendiente de aprobación -->
+  <section id="vista-pendiente" class="login hidden">
+    <div class="login-card center">
+      <h2>Cuenta pendiente</h2>
+      <p class="muted">Tu cuenta fue creada. El administrador debe activarla antes de que puedas entrar.</p>
+      <button class="btn" data-salir>Salir</button>
+    </div>
+  </section>
+
+  <!-- App -->
+  <div id="app" class="hidden">
+    <header class="topbar">
+      <div class="marca">
+        <picture class="logo sm"><source srcset="monograma-claro.png" media="(prefers-color-scheme: dark)"><img src="monograma.png" alt="JD"></picture>
+        <div class="marca-txt">
+          <strong id="app-nombre"></strong>
+          <span class="muted" id="app-usuario"></span>
+        </div>
+      </div>
+      <button class="btn ghost" data-salir>Salir</button>
+    </header>
+
+    <nav class="tabs" id="tabs">
+      <button data-vista="agenda" class="activo">Agenda</button>
+      <button data-vista="pacientes">Pacientes</button>
+      <button data-vista="pagos">Pagos</button>
+      <button data-vista="procedimientos" data-rol="admin">Procedimientos</button>
+      <button data-vista="usuarios" data-rol="admin">Usuarios</button>
+    </nav>
+
+    <main id="contenido"></main>
+  </div>
+
+  <!-- Modal genérico -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modal-titulo"></h3>
+        <button class="btn ghost icon" id="modal-cerrar" aria-label="Cerrar">✕</button>
+      </div>
+      <div id="modal-cuerpo"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
